@@ -2,6 +2,7 @@ const getWishListFrmLS = ()=>{
     const storedlist = localStorage.getItem('wish-list');
     if(storedlist){
         const storelistParse = JSON.parse(storedlist);
+        console.log(storelistParse)
         return storelistParse
     }else{
         return []
@@ -18,4 +19,4 @@ const addWishListToLS = (id)=>{
         localStorage.setItem('wish-list', setWishList)
     }
 }
-export { addWishListToLS}
+export { addWishListToLS, getWishListFrmLS}

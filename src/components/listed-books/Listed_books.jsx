@@ -4,9 +4,12 @@ import "react-tabs/style/react-tabs.css";
 import { getStoredReadList } from "../../utility/addToDB";
 import { useLoaderData } from "react-router";
 import { ListedBooksCard } from "./ListedBooksCard";
+import { getWishListFrmLS } from "../../utility/addWishList";
+import { WishListedBooks } from "./WishListedBooks";
 
 export const Listed_books = () => {
   const [readBooks, setReadBooks] = useState([]);
+  const [wishlists, setWishList] = useState([])
   const allBooks = useLoaderData();
   useEffect(() => {
     const readBooksList = getStoredReadList();
@@ -16,6 +19,14 @@ export const Listed_books = () => {
     );
     setReadBooks(booksWhichRead);
   }, [allBooks]);
+
+  useEffect(()=>{
+    const wishListBook = getWishListFrmLS();
+    const wishlist = wishListBook.map(id => parseInt(id));
+    const bookWhichWishlisted = allBooks.filter(book => wishlist.includes(book.bookId))
+    setWishList(bookWhichWishlisted)
+  },[allBooks])
+  
   return (
     <div>
       <div className="bg-gray-300 text-center font-bold text-xl p-4 rounded-md my-5">
@@ -35,7 +46,11 @@ export const Listed_books = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          <div className="flex flex-col gap-5 my-5">
+            {wishlists.map((book) => (
+              <WishListedBooks key={book.bookId} book={book}></WishListedBooks>
+            ))}
+          </div>
         </TabPanel>
       </Tabs>
     </div>

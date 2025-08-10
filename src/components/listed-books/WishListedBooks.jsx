@@ -1,6 +1,6 @@
 
 
-export const ListedBooksCard = ({ book }) => {
+export const WishListedBooks = ({ book }) => {
   const {
     bookName,
     author,

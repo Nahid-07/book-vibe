@@ -10,7 +10,6 @@ const getStoredReadList = () => {
 
 const addToStoredReadList = (id) => {
   const storedList = getStoredReadList();
-  console.log(storedList)
   if (storedList.includes(id)) {
     console.log("already exist");
   } else {
