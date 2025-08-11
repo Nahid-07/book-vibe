@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import { getStoredReadList } from "../../utility/addToDB";
 import { useLoaderData } from "react-router";
 import { ListedBooksCard } from "./ListedBooksCard";
 import { getWishListFrmLS } from "../../utility/addWishList";
 import { WishListedBooks } from "./WishListedBooks";
+import "react-tabs/style/react-tabs.css";
 
 export const Listed_books = () => {
   const [readBooks, setReadBooks] = useState([]);
